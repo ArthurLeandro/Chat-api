@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat API</title>
+    <style>
+      body {
+        background: #f9f9f9;
+      }
+      #container {
+        width: 700px;
+        margin: 0 auto;
+      }
+      #chat-window {
+        height: 300px;
+      }
+      #main-wrapper {
+        display: none;
+      }
+      #chat-wrapper {
+        float: left;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background: #f4f4f4;
+        padding: 10px;
+      }
+      #user-wrapper {
+        float: left;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background: #f4f4f4;
+        padding: 10px;
+        margin-left: 20px;
+        width: 150px;
+        max-height: 200px;
+      }
+      #name-wrapper {
+        float: left;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background: #f4f4f4;
+        padding: 10px;
+        margin-left: 20px;
+      }
+      input {
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="name-wrapper">
+        <h2>CHAT API</h2>
+        <p>Create Username:</p>
+        <form id="user-name-form" action="">
+          <input size="35" type="text" name="" id="user-name" />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <div id="main-wrapper">
+        <h2>Char API</h2>
+        <div id="chat-wrapper">
+          <div id="chat-window"></div>
+          <form id="message-form" action="">
+            <input
+              size="35"
+              type="text"
+              name=""
+              id="message-name"
+              placeholder="Type something..."
+            />
+            <input type="submit" value="Send" />
+          </form>
+        </div>
+        <div id="user-wrapper">
+          <div id="users"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
