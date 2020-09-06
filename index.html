@@ -53,6 +53,7 @@
       <div id="name-wrapper">
         <h2>CHAT API</h2>
         <p>Create Username:</p>
+        <div id="error"></div>
         <form id="user-name-form" action="">
           <input size="35" type="text" name="" id="user-name" />
           <input type="submit" value="Submit" />
@@ -90,13 +91,39 @@
         var $messageForm = $("#message-form");
         var $message = $("#message");
         var $chatWindow = $("#chat-window");
+        var $usernameForm = $("#user-name-form");
+        var $user = $("#users");
+        var $username = $("#user-name");
+        var $error = $("#error");
+
+        $usernameForm.submit((e) => {
+          e.preventDefault();
+          socket.emit("new-user", $username.val(), (data) => {
+            if (data) {
+              $("#name-wrapper").hide();
+              $("#main-wrapper").show();
+            } else {
+              $error.html("Username is already taken");
+            }
+          });
+          $username.val("");
+        });
+        socket.on("usernames", (data) => {
+          var html = "";
+          for (i = 0; i < data.length; i++) {
+            html += data[i] + "<br>";
+          }
+          $user.html(html);
+        });
         $messageForm.submit(function (event) {
           event.preventDefault();
           socket.emit("send-message", $message.val());
           $message.val("");
         });
         socket.on("new-message", function (data) {
-          $chatWindow.append(data.msg + "<br>");
+          $chatWindow.append(
+            "<strong>" + data.user + "</strong>: " + data.msg + "<br>"
+          );
         });
       });
     </script>
